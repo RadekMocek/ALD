@@ -1,0 +1,53 @@
+﻿<Window x:Class="ALDSemestral.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ALDSemestral"
+        mc:Ignorable="d"
+        Title="ALD" Width="1280" Height="720"
+        xmlns:viewmodels="clr-namespace:ALDSemestral.ViewModels"
+        >
+
+    <Window.DataContext>
+        <viewmodels:MainViewModel></viewmodels:MainViewModel>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="125"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!-- Column 0 -->
+        <StackPanel Orientation="Vertical">
+            <Label Content="Velikost mřížky:"></Label>
+            <UniformGrid Columns="2">
+                <Label Content="Šířka:" HorizontalAlignment="Right"></Label>
+                <TextBox Text="{Binding NColumnsInput, Mode=TwoWay}" MaxLength="2"></TextBox>
+            </UniformGrid>
+            <UniformGrid Columns="2">
+                <Label Content="Výška:" HorizontalAlignment="Right"></Label>
+                <TextBox Text="{Binding NRowsInput, Mode=TwoWay}" MaxLength="2"></TextBox>
+            </UniformGrid>
+            <Button Content="Generovat" Command="{Binding GenerateComm}" Margin="0,5,0,0"></Button>
+        </StackPanel>        
+        <!-- Column 1 -->
+        <Viewbox Grid.Column="1" Stretch="Uniform">
+            <ItemsControl ItemsSource="{Binding ImageGrid}" >
+                <!-- This panel will be used to hold the items -->
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="{Binding NRows}" Columns="{Binding NColumns}" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <!-- Each item will be drawn using this template -->
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding Path}" Stretch="Fill"></Image>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Viewbox>
+    </Grid>
+    
+</Window>
