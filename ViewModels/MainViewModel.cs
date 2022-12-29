@@ -10,16 +10,16 @@ namespace ALDSemestral.ViewModels
     {
         private int nRowsInput;
         public int NRowsInput { get => nRowsInput; set { nRowsInput = value; NotifyPropertyChanged(); } }
-        
+
         private int nColumnsInput;
         public int NColumnsInput { get => nColumnsInput; set { nColumnsInput = value; NotifyPropertyChanged(); } }
-        
+
         private int nRows;
         public int NRows { get => nRows; set { nRows = value; NotifyPropertyChanged(); } }
-        
+
         private int nColumns;
         public int NColumns { get => nColumns; set { nColumns = value; NotifyPropertyChanged(); } }
-        
+
         private ObservableCollection<Image>? imageGrid;
         public ObservableCollection<Image>? ImageGrid { get => imageGrid; set { imageGrid = value; NotifyPropertyChanged(); } }
 
@@ -40,8 +40,15 @@ namespace ALDSemestral.ViewModels
             ImageGrid = new ObservableCollection<Image>();
             NRows = NRowsInput;
             NColumns = NColumnsInput;
-            for (int i = 0; i < NRows * NColumns; i++) {
-                ImageGrid.Add(new Image() { Path = "../Resources/TestingTile.png" });
+
+            Generator.Generate(NColumns, NRows);
+            for (int i = 0; i < NRows; i++)
+            {
+                for (int y = 0; y < NColumns; y++)
+                {
+                    ImageGrid.Add(new Image() { Path = $"../Resources/TestingTile{Generator.array![i, y]}.png" });
+                }
+
             }
         }
 
