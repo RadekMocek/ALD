@@ -47,7 +47,7 @@ namespace ALDSemestral.ViewModels
             {
                 for (int y = 0; y < NColumns; y++)
                 {
-                    ImageGrid.Add(new Image() { Path = $"../Resources/{Generator.array![i, y]}.png" });
+                    ImageGrid.Add(new Image() { Path = $"../Resources/{Generator.array![y, i]}.png" });
                 }
 
             }

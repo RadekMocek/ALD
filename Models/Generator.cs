@@ -7,7 +7,7 @@ namespace ALDSemestral.Models
         public static string[,]? array;
         static int MaxC;
         static int MaxR;
-        static readonly Random Random = new Random();
+        static readonly Random Random = new();
         public static void Generate(int NCollum, int NRow)
         {
             MaxC = NCollum;
