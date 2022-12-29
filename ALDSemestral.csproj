@@ -8,11 +8,41 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Resources\TestingTile.png" />
+    <None Remove="Resources\0000.png" />
+    <None Remove="Resources\0001.png" />
+    <None Remove="Resources\0010.png" />
+    <None Remove="Resources\0011.png" />
+    <None Remove="Resources\0100.png" />
+    <None Remove="Resources\0101.png" />
+    <None Remove="Resources\0110.png" />
+    <None Remove="Resources\0111.png" />
+    <None Remove="Resources\1000.png" />
+    <None Remove="Resources\1001.png" />
+    <None Remove="Resources\1010.png" />
+    <None Remove="Resources\1011.png" />
+    <None Remove="Resources\1100.png" />
+    <None Remove="Resources\1101.png" />
+    <None Remove="Resources\1110.png" />
+    <None Remove="Resources\1111.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\TestingTile.png" />
+    <Resource Include="Resources\0000.png" />
+    <Resource Include="Resources\0001.png" />
+    <Resource Include="Resources\0010.png" />
+    <Resource Include="Resources\0011.png" />
+    <Resource Include="Resources\0100.png" />
+    <Resource Include="Resources\0101.png" />
+    <Resource Include="Resources\0110.png" />
+    <Resource Include="Resources\0111.png" />
+    <Resource Include="Resources\1000.png" />
+    <Resource Include="Resources\1001.png" />
+    <Resource Include="Resources\1010.png" />
+    <Resource Include="Resources\1011.png" />
+    <Resource Include="Resources\1100.png" />
+    <Resource Include="Resources\1101.png" />
+    <Resource Include="Resources\1110.png" />
+    <Resource Include="Resources\1111.png" />
   </ItemGroup>
 
 </Project>

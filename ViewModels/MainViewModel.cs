@@ -42,11 +42,12 @@ namespace ALDSemestral.ViewModels
             NColumns = NColumnsInput;
 
             Generator.Generate(NColumns, NRows);
+
             for (int i = 0; i < NRows; i++)
             {
                 for (int y = 0; y < NColumns; y++)
                 {
-                    ImageGrid.Add(new Image() { Path = $"../Resources/TestingTile{Generator.array![i, y]}.png" });
+                    ImageGrid.Add(new Image() { Path = $"../Resources/{Generator.array![i, y]}.png" });
                 }
 
             }
