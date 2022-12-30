@@ -38,6 +38,12 @@ namespace ALDSemestral.ViewModels
         private void Render()
         {
             ImageGrid = new ObservableCollection<Image>();
+
+            if (NRowsInput < 2) NRowsInput = 2;
+            if (NRowsInput > 50) NRowsInput = 50;
+            if (NColumnsInput < 2) NColumnsInput = 2;
+            if (NColumnsInput > 50) NColumnsInput = 50;
+
             NRows = NRowsInput;
             NColumns = NColumnsInput;
 
