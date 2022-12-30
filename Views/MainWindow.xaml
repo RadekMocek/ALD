@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ALDSemestral"
         mc:Ignorable="d"
-        Title="ALD" Width="1280" Height="720"
+        Title="ALD" Width="822" Height="720"
         xmlns:viewmodels="clr-namespace:ALDSemestral.ViewModels"
         >
 

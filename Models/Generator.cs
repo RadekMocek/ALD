@@ -5,43 +5,48 @@ namespace ALDSemestral.Models
     static class Generator
     {
         public static string[,]? array;
-        static int MaxC;
-        static int MaxR;
-        static readonly Random Random = new();
-        public static void Generate(int NCollum, int NRow)
+        static int maxC;
+        static int maxR;
+        static readonly Random random = new();
+
+        public static void Generate(int column, int row)
         {
-            MaxC = NCollum;
-            MaxR = NRow;
-            array = new string[MaxC, MaxR];
-            Recursion(Random.Next(0, MaxC), Random.Next(0, MaxR));
+            maxC = column;
+            maxR = row;
+            array = new string[maxC, maxR];
+            Recursion(random.Next(0, maxC), random.Next(0, maxR));
         }
 
-        static void Recursion(int NCollum, int NRow)
+        static void Recursion(int column, int row)
         {
-            char[] value = Convert.ToString(Random.Next(0, 16), 2).PadLeft(4, '0').ToCharArray();
+            // Choose random tile
+            char[] value = Convert.ToString(random.Next(0, 16), 2).PadLeft(4, '0').ToCharArray();
 
-            //discover neighbor
-            if (IsNeighbor(NCollum, NRow - 1)) { value[0] = array![NCollum, NRow - 1][2]; }
-            if (IsNeighbor(NCollum + 1, NRow)) { value[1] = array![NCollum + 1, NRow][3]; }
-            if (IsNeighbor(NCollum, NRow + 1)) { value[2] = array![NCollum, NRow + 1][0]; }
-            if (IsNeighbor(NCollum - 1, NRow)) { value[3] = array![NCollum - 1, NRow][1]; }
+            // Update tile according to taken neighbors
+            if (IsNeighbor(column, row - 1)) { value[0] = array![column, row - 1][2]; }
+            if (IsNeighbor(column + 1, row)) { value[1] = array![column + 1, row][3]; }
+            if (IsNeighbor(column, row + 1)) { value[2] = array![column, row + 1][0]; }
+            if (IsNeighbor(column - 1, row)) { value[3] = array![column - 1, row][1]; }
 
-            array![NCollum, NRow] = new string(value);
-            if (IsOk(NCollum, NRow - 1)) { Recursion(NCollum, NRow - 1); }
-            if (IsOk(NCollum + 1, NRow)) { Recursion(NCollum + 1, NRow); }
-            if (IsOk(NCollum, NRow + 1)) { Recursion(NCollum, NRow + 1); }
-            if (IsOk(NCollum - 1, NRow)) { Recursion(NCollum - 1, NRow); }
+            // Set tile value
+            array![column, row] = new string(value);
+
+            // Run this func on all free neighbors
+            if (IsFree(column, row - 1)) { Recursion(column, row - 1); }
+            if (IsFree(column + 1, row)) { Recursion(column + 1, row); }
+            if (IsFree(column, row + 1)) { Recursion(column, row + 1); }
+            if (IsFree(column - 1, row)) { Recursion(column - 1, row); }
 
         }
 
-        static bool IsNeighbor(int NCollum, int NRow)
+        static bool IsNeighbor(int column, int row)
         {
-            return !(NCollum < 0 || NCollum > MaxC-1 || NRow > MaxR-1 || NRow < 0 || array![NCollum, NRow] == null);
+            return !(column < 0 || column > maxC - 1 || row > maxR - 1 || row < 0 || array![column, row] == null);
         }
 
-        static bool IsOk(int NCollum, int NRow)
+        static bool IsFree(int column, int row)
         {
-            return !(NCollum < 0 || NCollum > MaxC-1 || NRow > MaxR-1 || NRow < 0) && array![NCollum, NRow] == null;
+            return !(column < 0 || column > maxC - 1 || row > maxR - 1 || row < 0) && array![column, row] == null;
         }
 
     }

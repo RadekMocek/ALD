@@ -1,5 +1,6 @@
 ﻿using ALDSemestral.Models;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -25,10 +26,18 @@ namespace ALDSemestral.ViewModels
 
         public RelayCommand GenerateComm { get; set; }
 
+        private Dictionary<string, Image> tiles;
+
         public MainViewModel()
         {
-            NRowsInput = 5;
-            NColumnsInput = 5;
+            tiles = new Dictionary<string, Image>();
+            for (int i = 0; i < 16; i++) {
+                var key = Convert.ToString(i, 2).PadLeft(4, '0');
+                tiles.Add(key, new Image() { Path = $"../Resources/{key}.png" });
+            }
+
+            NRowsInput = 15;
+            NColumnsInput = 15;
 
             GenerateComm = new RelayCommand(() => Render(), () => true);
 
@@ -53,9 +62,8 @@ namespace ALDSemestral.ViewModels
             {
                 for (int y = 0; y < NColumns; y++)
                 {
-                    ImageGrid.Add(new Image() { Path = $"../Resources/{Generator.array![y, i]}.png" });
+                    ImageGrid.Add(tiles[Generator.array![y, i]]);
                 }
-
             }
         }
 
